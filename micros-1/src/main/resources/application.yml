@@ -9,8 +9,47 @@ spring:
   config:
     import: 'optional:configserver:http://localhost:8071'
 
+# Management Endpoints Configuration
 management:
+  # Enable all web endpoints
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: '*'  # Include all endpoints
+  # Shutdown Endpoint Configuration
+  endpoint:
+    shutdown:
+      # Allow unrestricted access to the shutdown endpoint
+      access: unrestricted
+  # Info Endpoint Configuration
+  info:
+    # Enable environment information
+    env:
+      enabled: true
+
+# Eureka Configuration
+eureka:
+  # Eureka Instance Configuration
+  instance:
+    # Prefer IP address over hostname for registration
+    prefer-ip-address: true
+  # Eureka Client Configuration
+  client:
+    # Fetch registry information from the Eureka server
+    fetch-registry: true
+    # Register this application with the Eureka server
+    register-with-eureka: true
+    # Eureka server URL
+    service-url:
+      defaultZone: http://localhost:8070/eureka  # Default zone URL
+
+# Application Information
+info:
+  # Application metadata
+  app:
+    # Application name
+    name: 'micros-1'
+    # Application version
+    version: '1.0.0'
+    # Application description
+    description: 'micros-1 description'
